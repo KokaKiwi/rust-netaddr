@@ -1,0 +1,8 @@
+[package]
+
+name = "netaddr"
+version = "0.1.0"
+description = "Network addresses utilities for Rust."
+authors = [
+    "KokaKiwi <kokakiwi@kokakiwi.net>",
+]

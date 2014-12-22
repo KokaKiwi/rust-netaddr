@@ -1,0 +1,7 @@
+# Build files
+/target
+/Cargo.lock
+
+# Misc files
+.*
+!.gitignore
