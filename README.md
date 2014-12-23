@@ -9,3 +9,12 @@ Documentation
 -------------
 
 Just here: http://kokakiwi.github.io/rust-netaddr/doc/netaddr/
+
+Usage with cargo
+----------------
+
+Just add the following lines to your in the `dependencies` section of your `Cargo.toml` file:
+
+```toml
+netaddr = "*"
+```
