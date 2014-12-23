@@ -2,7 +2,14 @@
 
 name = "netaddr"
 version = "0.1.0"
-description = "Network addresses utilities for Rust."
 authors = [
     "KokaKiwi <kokakiwi@kokakiwi.net>",
 ]
+
+description = "Network addresses utilities for Rust."
+documentation = "http://kokakiwi.github.io/rust-netaddr/doc/netaddr/index.html"
+repository = "https://github.com/KokaKiwi/rust-netaddr"
+readme = "README.md"
+
+keywords = ["net"]
+license = "MIT"
