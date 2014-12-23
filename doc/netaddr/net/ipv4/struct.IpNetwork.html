@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `IpNetwork` struct in crate `netaddr`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, IpNetwork">
+
+    <title>netaddr::net::ipv4::IpNetwork - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>netaddr</a>::<wbr><a href='../index.html'>net</a>::<wbr><a href='index.html'>ipv4</a></p><div class='block struct'><h2>Structs</h2><a class='struct ' href='struct.Hosts.html'>Hosts</a><a class='struct current' href='struct.IpNetwork.html'>IpNetwork</a></div>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../../index.html'>netaddr</a>::<wbr><a href='../index.html'>net</a>::<wbr><a href='index.html'>ipv4</a>::<wbr><a class='struct' href=''>IpNetwork</a><wbr><a class='stability Experimental' title=''>Experimental</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="collapse-all" href="#">[-]
+            </a>&nbsp;<a id="expand-all" href="#">[+]</a>
+        </span><a id='src-5320' href='../../../src/netaddr/net/ipv4.rs.html#7'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct IpNetwork(pub <a class='struct' href='../../../netaddr/addr/ipv4/struct.IpAddr.html' title='netaddr::addr::ipv4::IpAddr'>IpAddr</a>, pub <a href='http://doc.rust-lang.org/nightly/std/primitive.uint.html'>uint</a>);</pre><h2 id='methods'>Methods</h2><h3 class='impl'><a class='stability Experimental' title='Experimental'></a><code>impl <a class='struct' href='../../../netaddr/net/ipv4/struct.IpNetwork.html' title='netaddr::net::ipv4::IpNetwork'>IpNetwork</a></code></h3><div class='impl-items'><h4 id='method.version' class='method'><a class='stability Experimental' title='Experimental'></a><code>fn <a href='#method.version' class='fnname'>version</a>(&amp;self) -&gt; <a class='enum' href='../../../netaddr/addr/enum.IpAddrVersion.html' title='netaddr::addr::IpAddrVersion'>IpAddrVersion</a></code></h4>
+<div class='docblock'><p>Get the corresponding IP address version.</p>
+</div><h4 id='method.address' class='method'><a class='stability Experimental' title='Experimental'></a><code>fn <a href='#method.address' class='fnname'>address</a>(&amp;self) -&gt; <a class='struct' href='../../../netaddr/addr/ipv4/struct.IpAddr.html' title='netaddr::addr::ipv4::IpAddr'>IpAddr</a></code></h4>
+<div class='docblock'><p>Get the network address for the network.</p>
+</div><h4 id='method.broadcast_address' class='method'><a class='stability Experimental' title='Experimental'></a><code>fn <a href='#method.broadcast_address' class='fnname'>broadcast_address</a>(&amp;self) -&gt; <a class='struct' href='../../../netaddr/addr/ipv4/struct.IpAddr.html' title='netaddr::addr::ipv4::IpAddr'>IpAddr</a></code></h4>
+<div class='docblock'><p>Get the broadcast address for the network.</p>
+</div><h4 id='method.prefix' class='method'><a class='stability Experimental' title='Experimental'></a><code>fn <a href='#method.prefix' class='fnname'>prefix</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.uint.html'>uint</a></code></h4>
+<div class='docblock'><p>Get the length of the network prefix, in bits.</p>
+</div><h4 id='method.host_prefix' class='method'><a class='stability Experimental' title='Experimental'></a><code>fn <a href='#method.host_prefix' class='fnname'>host_prefix</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.uint.html'>uint</a></code></h4>
+<div class='docblock'><p>Get the length of the host prefix, in bits.</p>
+</div><h4 id='method.num_addresses' class='method'><a class='stability Experimental' title='Experimental'></a><code>fn <a href='#method.num_addresses' class='fnname'>num_addresses</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.uint.html'>uint</a></code></h4>
+<div class='docblock'><p>The total number of addresses in the network.</p>
+</div><h4 id='method.mask' class='method'><a class='stability Experimental' title='Experimental'></a><code>fn <a href='#method.mask' class='fnname'>mask</a>(&amp;self) -&gt; <a class='struct' href='../../../netaddr/addr/ipv4/struct.IpAddr.html' title='netaddr::addr::ipv4::IpAddr'>IpAddr</a></code></h4>
+<div class='docblock'><p>Get the mask of the network.</p>
+</div><h4 id='method.range' class='method'><a class='stability Experimental' title='Experimental'></a><code>fn <a href='#method.range' class='fnname'>range</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(<a class='struct' href='../../../netaddr/addr/ipv4/struct.IpAddr.html' title='netaddr::addr::ipv4::IpAddr'>IpAddr</a>, <a class='struct' href='../../../netaddr/addr/ipv4/struct.IpAddr.html' title='netaddr::addr::ipv4::IpAddr'>IpAddr</a>)</a></code></h4>
+<div class='docblock'><p>Get the hosts range this network have.</p>
+</div><h4 id='method.contains' class='method'><a class='stability Experimental' title='Experimental'></a><code>fn <a href='#method.contains' class='fnname'>contains</a>(&amp;self, ip: <a class='struct' href='../../../netaddr/addr/ipv4/struct.IpAddr.html' title='netaddr::addr::ipv4::IpAddr'>IpAddr</a>) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<div class='docblock'><p><code>true</code> if this ip is contained in the network.</p>
+</div><h4 id='method.overlaps' class='method'><a class='stability Experimental' title='Experimental'></a><code>fn <a href='#method.overlaps' class='fnname'>overlaps</a>(&amp;self, other: <a class='struct' href='../../../netaddr/net/ipv4/struct.IpNetwork.html' title='netaddr::net::ipv4::IpNetwork'>IpNetwork</a>) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<div class='docblock'><p><code>true</code> if this network is partly or wholly contained in other or other is wholly contained in this network.</p>
+</div><h4 id='method.iter' class='method'><a class='stability Experimental' title='Experimental'></a><code>fn <a href='#method.iter' class='fnname'>iter</a>(&amp;self) -&gt; <a class='struct' href='../../../netaddr/net/ipv4/struct.Hosts.html' title='netaddr::net::ipv4::Hosts'>Hosts</a></code></h4>
+<div class='docblock'><p>Iterate over all addresses of this network.</p>
+</div><h4 id='method.hosts_iter' class='method'><a class='stability Experimental' title='Experimental'></a><code>fn <a href='#method.hosts_iter' class='fnname'>hosts_iter</a>(&amp;self) -&gt; <a class='struct' href='../../../netaddr/net/ipv4/struct.Hosts.html' title='netaddr::net::ipv4::Hosts'>Hosts</a></code></h4>
+<div class='docblock'><p>Iterate over all usable hosts of this network.</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><a class='stability Experimental' title='Experimental'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialOrd.html' title='core::cmp::PartialOrd'>PartialOrd</a> for <a class='struct' href='../../../netaddr/net/ipv4/struct.IpNetwork.html' title='netaddr::net::ipv4::IpNetwork'>IpNetwork</a></code></h3><div class='impl-items'><h4 id='method.partial_cmp' class='method'><a class='stability Unstable' title='Unstable: Definition may change slightly after trait reform'></a><code>fn <a href='#method.partial_cmp' class='fnname'>partial_cmp</a>(&amp;self, other: &amp;<a class='struct' href='../../../netaddr/net/ipv4/struct.IpNetwork.html' title='netaddr::net::ipv4::IpNetwork'>IpNetwork</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='enum' href='http://doc.rust-lang.org/nightly/core/cmp/enum.Ordering.html' title='core::cmp::Ordering'>Ordering</a>&gt;</code></h4>
+<h4 id='method.lt' class='tymethod'><a class='stability Unstable' title='Unstable: Definition may change slightly after trait reform'></a><code>fn <a href='#tymethod.lt' class='fnname'>lt</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.le' class='tymethod'><a class='stability Unstable' title='Unstable: Definition may change slightly after trait reform'></a><code>fn <a href='#tymethod.le' class='fnname'>le</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.gt' class='tymethod'><a class='stability Unstable' title='Unstable: Definition may change slightly after trait reform'></a><code>fn <a href='#tymethod.gt' class='fnname'>gt</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.ge' class='tymethod'><a class='stability Unstable' title='Unstable: Definition may change slightly after trait reform'></a><code>fn <a href='#tymethod.ge' class='fnname'>ge</a>(&amp;self, other: &amp;Rhs) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+</div><h3 class='impl'><a class='stability Experimental' title='Experimental'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.Ord.html' title='core::cmp::Ord'>Ord</a> for <a class='struct' href='../../../netaddr/net/ipv4/struct.IpNetwork.html' title='netaddr::net::ipv4::IpNetwork'>IpNetwork</a></code></h3><div class='impl-items'><h4 id='method.cmp' class='method'><a class='stability Unstable' title='Unstable: Definition may change slightly after trait reform'></a><code>fn <a href='#method.cmp' class='fnname'>cmp</a>(&amp;self, other: &amp;<a class='struct' href='../../../netaddr/net/ipv4/struct.IpNetwork.html' title='netaddr::net::ipv4::IpNetwork'>IpNetwork</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/cmp/enum.Ordering.html' title='core::cmp::Ordering'>Ordering</a></code></h4>
+</div><h3 class='impl'><a class='stability Experimental' title='Experimental'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/fmt/trait.Show.html' title='core::fmt::Show'>Show</a> for <a class='struct' href='../../../netaddr/net/ipv4/struct.IpNetwork.html' title='netaddr::net::ipv4::IpNetwork'>IpNetwork</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><a class='stability Unstable' title='Unstable: I/O and core have yet to be reconciled'></a><code>fn <a href='#method.fmt' class='fnname'>fmt</a>(&amp;self, f: &amp;mut <a class='struct' href='http://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+</div><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><a class='stability Experimental' title='Experimental'></a><code>impl&lt;__D: <a class='trait' href='http://doc.rust-lang.org/nightly/serialize/serialize/trait.Decoder.html' title='serialize::serialize::Decoder'>Decoder</a>&lt;__E&gt;, __E&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/serialize/serialize/trait.Decodable.html' title='serialize::serialize::Decodable'>Decodable</a>&lt;__D, __E&gt; for <a class='struct' href='../../../netaddr/net/ipv4/struct.IpNetwork.html' title='netaddr::net::ipv4::IpNetwork'>IpNetwork</a></code></h3><div class='impl-items'><h4 id='method.decode' class='method'><a class='stability Experimental' title='Experimental'></a><code>fn <a href='#method.decode' class='fnname'>decode</a>(__arg_0: &amp;mut __D) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../../../netaddr/net/ipv4/struct.IpNetwork.html' title='netaddr::net::ipv4::IpNetwork'>IpNetwork</a>, __E&gt;</code></h4>
+</div><h3 class='impl'><a class='stability Experimental' title='Experimental'></a><code>impl&lt;__S: <a class='trait' href='http://doc.rust-lang.org/nightly/serialize/serialize/trait.Encoder.html' title='serialize::serialize::Encoder'>Encoder</a>&lt;__E&gt;, __E&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/serialize/serialize/trait.Encodable.html' title='serialize::serialize::Encodable'>Encodable</a>&lt;__S, __E&gt; for <a class='struct' href='../../../netaddr/net/ipv4/struct.IpNetwork.html' title='netaddr::net::ipv4::IpNetwork'>IpNetwork</a></code></h3><div class='impl-items'><h4 id='method.encode' class='method'><a class='stability Experimental' title='Experimental'></a><code>fn <a href='#method.encode' class='fnname'>encode</a>(&amp;self, __arg_0: &amp;mut __S) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, __E&gt;</code></h4>
+</div><h3 class='impl'><a class='stability Experimental' title='Experimental'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/hash/trait.Hash.html' title='core::hash::Hash'>Hash</a> for <a class='struct' href='../../../netaddr/net/ipv4/struct.IpNetwork.html' title='netaddr::net::ipv4::IpNetwork'>IpNetwork</a></code></h3><div class='impl-items'><h4 id='method.hash' class='method'><a class='stability Experimental' title='Experimental'></a><code>fn <a href='#method.hash' class='fnname'>hash</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='http://doc.rust-lang.org/nightly/core/hash/sip/struct.SipState.html' title='core::hash::sip::SipState'>SipState</a>)</code></h4>
+</div><h3 class='impl'><a class='stability Experimental' title='Experimental'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.Eq.html' title='core::cmp::Eq'>Eq</a> for <a class='struct' href='../../../netaddr/net/ipv4/struct.IpNetwork.html' title='netaddr::net::ipv4::IpNetwork'>IpNetwork</a></code></h3><div class='impl-items'><h4 id='method.assert_receiver_is_total_eq' class='tymethod'><a class='stability Unstable' title='Unstable: Definition may change slightly after trait reform'></a><code>fn <a href='#tymethod.assert_receiver_is_total_eq' class='fnname'>assert_receiver_is_total_eq</a>(&amp;self)</code></h4>
+</div><h3 class='impl'><a class='stability Experimental' title='Experimental'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='struct' href='../../../netaddr/net/ipv4/struct.IpNetwork.html' title='netaddr::net::ipv4::IpNetwork'>IpNetwork</a></code></h3><div class='impl-items'><h4 id='method.eq' class='method'><a class='stability Unstable' title='Unstable: Definition may change slightly after trait reform'></a><code>fn <a href='#method.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class='struct' href='../../../netaddr/net/ipv4/struct.IpNetwork.html' title='netaddr::net::ipv4::IpNetwork'>IpNetwork</a>) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.ne' class='method'><a class='stability Unstable' title='Unstable: Definition may change slightly after trait reform'></a><code>fn <a href='#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class='struct' href='../../../netaddr/net/ipv4/struct.IpNetwork.html' title='netaddr::net::ipv4::IpNetwork'>IpNetwork</a>) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+</div><h3 class='impl'><a class='stability Experimental' title='Experimental'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../../../netaddr/net/ipv4/struct.IpNetwork.html' title='netaddr::net::ipv4::IpNetwork'>IpNetwork</a></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../../../netaddr/net/ipv4/struct.IpNetwork.html' title='netaddr::net::ipv4::IpNetwork'>IpNetwork</a></code></h4>
+<h4 id='method.clone_from' class='tymethod'><a class='stability Experimental' title='Experimental: this function is mostly unused'></a><code>fn <a href='#tymethod.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
+</div><h3 class='impl'><a class='stability Experimental' title='Experimental'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/kinds/trait.Copy.html' title='core::kinds::Copy'>Copy</a> for <a class='struct' href='../../../netaddr/net/ipv4/struct.IpNetwork.html' title='netaddr::net::ipv4::IpNetwork'>IpNetwork</a></code></h3><div class='impl-items'></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div class="shortcuts">
+            <h1>Keyboard shortcuts</h1>
+            <dl>
+                <dt>?</dt>
+                <dd>Show this help dialog</dd>
+                <dt>S</dt>
+                <dd>Focus the search field</dd>
+                <dt>&larrb;</dt>
+                <dd>Move up in search results</dd>
+                <dt>&rarrb;</dt>
+                <dd>Move down in search results</dd>
+                <dt>&#9166;</dt>
+                <dd>Go to active search result</dd>
+            </dl>
+        </div>
+        <div class="infos">
+            <h1>Search tricks</h1>
+            <p>
+                Prefix searches with a type followed by a colon (e.g.
+                <code>fn:</code>) to restrict the search to a given type.
+            </p>
+            <p>
+                Accepted types are: <code>fn</code>, <code>mod</code>,
+                <code>struct</code>, <code>enum</code>,
+                <code>trait</code>, <code>typedef</code> (or
+                <code>tdef</code>).
+            </p>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "netaddr";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script async src="../../../search-index.js"></script>
+</body>
+</html>
