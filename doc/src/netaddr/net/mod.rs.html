@@ -214,7 +214,7 @@
 
 <span class='doccomment'>/// Describe an IP network.</span>
 <span class='attribute'>#[<span class='ident'>deriving</span>(<span class='ident'>Copy</span>, <span class='ident'>Clone</span>, <span class='ident'>PartialEq</span>, <span class='ident'>Eq</span>, <span class='ident'>PartialOrd</span>,
-            <span class='ident'>Ord</span>, <span class='ident'>Hash</span>, <span class='ident'>Encodable</span>, <span class='ident'>Decodable</span>)]</span>
+            <span class='ident'>Ord</span>, <span class='ident'>Hash</span>, <span class='ident'>RustcEncodable</span>, <span class='ident'>RustcDecodable</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>IpNetwork</span> {
     <span class='ident'>Ipv4Network</span>(<span class='ident'>ipv4</span>::<span class='ident'>IpNetwork</span>),
     <span class='ident'>Ipv6Network</span>(<span class='ident'>ipv6</span>::<span class='ident'>IpNetwork</span>),

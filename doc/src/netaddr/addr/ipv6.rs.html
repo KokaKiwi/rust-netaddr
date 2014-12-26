@@ -303,7 +303,7 @@
 
 <span class='kw'>pub</span> <span class='kw'>const</span> <span class='ident'>MAX_PREFIXLEN</span>: <span class='ident'>uint</span> <span class='op'>=</span> <span class='number'>128</span>;
 
-<span class='attribute'>#[<span class='ident'>deriving</span>(<span class='ident'>Copy</span>, <span class='ident'>Clone</span>, <span class='ident'>PartialEq</span>, <span class='ident'>Eq</span>, <span class='ident'>Hash</span>, <span class='ident'>Encodable</span>, <span class='ident'>Decodable</span>)]</span>
+<span class='attribute'>#[<span class='ident'>deriving</span>(<span class='ident'>Copy</span>, <span class='ident'>Clone</span>, <span class='ident'>PartialEq</span>, <span class='ident'>Eq</span>, <span class='ident'>Hash</span>, <span class='ident'>RustcEncodable</span>, <span class='ident'>RustcDecodable</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>IpAddr</span>(<span class='kw'>pub</span> <span class='ident'>u16</span>, <span class='kw'>pub</span> <span class='ident'>u16</span>, <span class='kw'>pub</span> <span class='ident'>u16</span>, <span class='kw'>pub</span> <span class='ident'>u16</span>, <span class='kw'>pub</span> <span class='ident'>u16</span>, <span class='kw'>pub</span> <span class='ident'>u16</span>, <span class='kw'>pub</span> <span class='ident'>u16</span>, <span class='kw'>pub</span> <span class='ident'>u16</span>);
 
 <span class='kw'>impl</span> <span class='ident'>IpAddr</span> {

@@ -279,7 +279,7 @@
 
 <span class='doccomment'>/// Describe an IP address</span>
 <span class='attribute'>#[<span class='ident'>deriving</span>(<span class='ident'>Copy</span>, <span class='ident'>Clone</span>, <span class='ident'>PartialEq</span>, <span class='ident'>Eq</span>, <span class='ident'>PartialOrd</span>,
-            <span class='ident'>Ord</span>, <span class='ident'>Hash</span>, <span class='ident'>Encodable</span>, <span class='ident'>Decodable</span>)]</span>
+            <span class='ident'>Ord</span>, <span class='ident'>Hash</span>, <span class='ident'>RustcEncodable</span>, <span class='ident'>RustcDecodable</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>IpAddr</span> {
     <span class='ident'>Ipv4Addr</span>(<span class='ident'>ipv4</span>::<span class='ident'>IpAddr</span>),
     <span class='ident'>Ipv6Addr</span>(<span class='ident'>ipv6</span>::<span class='ident'>IpAddr</span>),
@@ -287,7 +287,7 @@
 
 <span class='doccomment'>/// Describe the version of an IP address.</span>
 <span class='attribute'>#[<span class='ident'>deriving</span>(<span class='ident'>Show</span>, <span class='ident'>Copy</span>, <span class='ident'>PartialEq</span>, <span class='ident'>Eq</span>, <span class='ident'>Hash</span>,
-            <span class='ident'>Encodable</span>, <span class='ident'>Decodable</span>)]</span>
+            <span class='ident'>RustcEncodable</span>, <span class='ident'>RustcDecodable</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>IpAddrVersion</span> {
     <span class='ident'>Ipv4</span>,
     <span class='ident'>Ipv6</span>,
@@ -443,36 +443,36 @@
 
     <span class='attribute'>#[<span class='ident'>test</span>]</span>
     <span class='kw'>fn</span> <span class='ident'>test_version</span>() {
-        <span class='kw'>let</span> <span class='ident'>ip</span>: <span class='ident'>IpAddr</span> <span class='op'>=</span> <span class='ident'>from_str</span>(<span class='string'>&quot;127.0.0.1&quot;</span>).<span class='ident'>unwrap</span>();
+        <span class='kw'>let</span> <span class='ident'>ip</span>: <span class='ident'>IpAddr</span> <span class='op'>=</span> <span class='string'>&quot;127.0.0.1&quot;</span>.<span class='ident'>parse</span>().<span class='ident'>unwrap</span>();
         <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>ip</span>.<span class='ident'>version</span>(), <span class='ident'>Ipv4</span>);
 
-        <span class='kw'>let</span> <span class='ident'>ip</span>: <span class='ident'>IpAddr</span> <span class='op'>=</span> <span class='ident'>from_str</span>(<span class='string'>&quot;2001:db8:0:0:0:ff00:42:8329&quot;</span>).<span class='ident'>unwrap</span>();
+        <span class='kw'>let</span> <span class='ident'>ip</span>: <span class='ident'>IpAddr</span> <span class='op'>=</span> <span class='string'>&quot;2001:db8:0:0:0:ff00:42:8329&quot;</span>.<span class='ident'>parse</span>().<span class='ident'>unwrap</span>();
         <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>ip</span>.<span class='ident'>version</span>(), <span class='ident'>Ipv6</span>);
     }
 
     <span class='attribute'>#[<span class='ident'>test</span>]</span>
     <span class='kw'>fn</span> <span class='ident'>test_packed</span>() {
-        <span class='kw'>let</span> <span class='ident'>ip</span>: <span class='ident'>IpAddr</span> <span class='op'>=</span> <span class='ident'>from_str</span>(<span class='string'>&quot;127.0.0.1&quot;</span>).<span class='ident'>unwrap</span>();
+        <span class='kw'>let</span> <span class='ident'>ip</span>: <span class='ident'>IpAddr</span> <span class='op'>=</span> <span class='string'>&quot;127.0.0.1&quot;</span>.<span class='ident'>parse</span>().<span class='ident'>unwrap</span>();
         <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>ip</span>.<span class='ident'>packed</span>(), <span class='macro'>vec</span><span class='macro'>!</span>[<span class='number'>127</span>, <span class='number'>0</span>, <span class='number'>0</span>, <span class='number'>1</span>]);
 
-        <span class='kw'>let</span> <span class='ident'>ip</span>: <span class='ident'>IpAddr</span> <span class='op'>=</span> <span class='ident'>from_str</span>(<span class='string'>&quot;2001:db8:0:0:0:ff00:42:8329&quot;</span>).<span class='ident'>unwrap</span>();
+        <span class='kw'>let</span> <span class='ident'>ip</span>: <span class='ident'>IpAddr</span> <span class='op'>=</span> <span class='string'>&quot;2001:db8:0:0:0:ff00:42:8329&quot;</span>.<span class='ident'>parse</span>().<span class='ident'>unwrap</span>();
         <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>ip</span>.<span class='ident'>packed</span>(), <span class='macro'>vec</span><span class='macro'>!</span>[<span class='number'>0x20</span>, <span class='number'>0x01</span>, <span class='number'>0x0d</span>, <span class='number'>0xb8</span>, <span class='number'>0x00</span>, <span class='number'>0x00</span>, <span class='number'>0x00</span>, <span class='number'>0x00</span>,
                                      <span class='number'>0x00</span>, <span class='number'>0x00</span>, <span class='number'>0xff</span>, <span class='number'>0x00</span>, <span class='number'>0x00</span>, <span class='number'>0x42</span>, <span class='number'>0x83</span>, <span class='number'>0x29</span>]);
     }
 
     <span class='attribute'>#[<span class='ident'>test</span>]</span>
     <span class='kw'>fn</span> <span class='ident'>test_convert</span>() {
-        <span class='kw'>let</span> <span class='ident'>ip</span>: <span class='ident'>IpAddr</span> <span class='op'>=</span> <span class='ident'>from_str</span>(<span class='string'>&quot;127.0.0.1&quot;</span>).<span class='ident'>unwrap</span>();
+        <span class='kw'>let</span> <span class='ident'>ip</span>: <span class='ident'>IpAddr</span> <span class='op'>=</span> <span class='string'>&quot;127.0.0.1&quot;</span>.<span class='ident'>parse</span>().<span class='ident'>unwrap</span>();
         <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>ip</span>, <span class='ident'>Ipv4Addr</span>(<span class='ident'>ipv4</span>::<span class='ident'>IpAddr</span>(<span class='number'>127</span>, <span class='number'>0</span>, <span class='number'>0</span>, <span class='number'>1</span>)));
 
-        <span class='kw'>let</span> <span class='ident'>ip</span>: <span class='ident'>IpAddr</span> <span class='op'>=</span> <span class='ident'>from_str</span>(<span class='string'>&quot;2001:db8:0:0:0:ff00:42:8329&quot;</span>).<span class='ident'>unwrap</span>();
+        <span class='kw'>let</span> <span class='ident'>ip</span>: <span class='ident'>IpAddr</span> <span class='op'>=</span> <span class='string'>&quot;2001:db8:0:0:0:ff00:42:8329&quot;</span>.<span class='ident'>parse</span>().<span class='ident'>unwrap</span>();
         <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>ip</span>, <span class='ident'>Ipv6Addr</span>(<span class='ident'>ipv6</span>::<span class='ident'>IpAddr</span>(<span class='number'>0x2001</span>, <span class='number'>0x0db8</span>, <span class='number'>0x0</span>, <span class='number'>0x0</span>, <span class='number'>0x0</span>, <span class='number'>0xff00</span>, <span class='number'>0x42</span>, <span class='number'>0x8329</span>)));
     }
 
     <span class='attribute'>#[<span class='ident'>test</span>]</span>
     <span class='kw'>fn</span> <span class='ident'>test_ord</span>() {
-        <span class='kw'>let</span> <span class='ident'>a</span>: <span class='ident'>IpAddr</span> <span class='op'>=</span> <span class='ident'>from_str</span>(<span class='string'>&quot;127.0.0.2&quot;</span>).<span class='ident'>unwrap</span>();
-        <span class='kw'>let</span> <span class='ident'>b</span>: <span class='ident'>IpAddr</span> <span class='op'>=</span> <span class='ident'>from_str</span>(<span class='string'>&quot;127.0.0.1&quot;</span>).<span class='ident'>unwrap</span>();
+        <span class='kw'>let</span> <span class='ident'>a</span>: <span class='ident'>IpAddr</span> <span class='op'>=</span> <span class='string'>&quot;127.0.0.2&quot;</span>.<span class='ident'>parse</span>().<span class='ident'>unwrap</span>();
+        <span class='kw'>let</span> <span class='ident'>b</span>: <span class='ident'>IpAddr</span> <span class='op'>=</span> <span class='string'>&quot;127.0.0.1&quot;</span>.<span class='ident'>parse</span>().<span class='ident'>unwrap</span>();
 
         <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>a</span> <span class='op'>&gt;</span> <span class='ident'>b</span>);
         <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>a</span> <span class='op'>!=</span> <span class='ident'>b</span>);
