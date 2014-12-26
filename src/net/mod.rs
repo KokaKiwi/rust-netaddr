@@ -8,7 +8,7 @@ pub mod ipv6;
 
 /// Describe an IP network.
 #[deriving(Copy, Clone, PartialEq, Eq, PartialOrd,
-            Ord, Hash, Encodable, Decodable)]
+            Ord, Hash, RustcEncodable, RustcDecodable)]
 pub enum IpNetwork {
     Ipv4Network(ipv4::IpNetwork),
     Ipv6Network(ipv6::IpNetwork),

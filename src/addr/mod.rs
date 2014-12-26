@@ -10,7 +10,7 @@ pub mod ipv6;
 
 /// Describe an IP address
 #[deriving(Copy, Clone, PartialEq, Eq, PartialOrd,
-            Ord, Hash, Encodable, Decodable)]
+            Ord, Hash, RustcEncodable, RustcDecodable)]
 pub enum IpAddr {
     Ipv4Addr(ipv4::IpAddr),
     Ipv6Addr(ipv6::IpAddr),
@@ -18,7 +18,7 @@ pub enum IpAddr {
 
 /// Describe the version of an IP address.
 #[deriving(Show, Copy, PartialEq, Eq, Hash,
-            Encodable, Decodable)]
+            RustcEncodable, RustcDecodable)]
 pub enum IpAddrVersion {
     Ipv4,
     Ipv6,
@@ -174,36 +174,36 @@ mod test {
 
     #[test]
     fn test_version() {
-        let ip: IpAddr = from_str("127.0.0.1").unwrap();
+        let ip: IpAddr = "127.0.0.1".parse().unwrap();
         assert_eq!(ip.version(), Ipv4);
 
-        let ip: IpAddr = from_str("2001:db8:0:0:0:ff00:42:8329").unwrap();
+        let ip: IpAddr = "2001:db8:0:0:0:ff00:42:8329".parse().unwrap();
         assert_eq!(ip.version(), Ipv6);
     }
 
     #[test]
     fn test_packed() {
-        let ip: IpAddr = from_str("127.0.0.1").unwrap();
+        let ip: IpAddr = "127.0.0.1".parse().unwrap();
         assert_eq!(ip.packed(), vec![127, 0, 0, 1]);
 
-        let ip: IpAddr = from_str("2001:db8:0:0:0:ff00:42:8329").unwrap();
+        let ip: IpAddr = "2001:db8:0:0:0:ff00:42:8329".parse().unwrap();
         assert_eq!(ip.packed(), vec![0x20, 0x01, 0x0d, 0xb8, 0x00, 0x00, 0x00, 0x00,
                                      0x00, 0x00, 0xff, 0x00, 0x00, 0x42, 0x83, 0x29]);
     }
 
     #[test]
     fn test_convert() {
-        let ip: IpAddr = from_str("127.0.0.1").unwrap();
+        let ip: IpAddr = "127.0.0.1".parse().unwrap();
         assert_eq!(ip, Ipv4Addr(ipv4::IpAddr(127, 0, 0, 1)));
 
-        let ip: IpAddr = from_str("2001:db8:0:0:0:ff00:42:8329").unwrap();
+        let ip: IpAddr = "2001:db8:0:0:0:ff00:42:8329".parse().unwrap();
         assert_eq!(ip, Ipv6Addr(ipv6::IpAddr(0x2001, 0x0db8, 0x0, 0x0, 0x0, 0xff00, 0x42, 0x8329)));
     }
 
     #[test]
     fn test_ord() {
-        let a: IpAddr = from_str("127.0.0.2").unwrap();
-        let b: IpAddr = from_str("127.0.0.1").unwrap();
+        let a: IpAddr = "127.0.0.2".parse().unwrap();
+        let b: IpAddr = "127.0.0.1".parse().unwrap();
 
         assert!(a > b);
         assert!(a != b);

@@ -3,7 +3,7 @@ use std::fmt;
 use addr::ipv4::{IpAddr, MAX_PREFIXLEN};
 use addr::{IpAddrVersion, Ipv4};
 
-#[deriving(Copy, Clone, PartialEq, Eq, Hash, Encodable, Decodable)]
+#[deriving(Copy, Clone, PartialEq, Eq, Hash, RustcEncodable, RustcDecodable)]
 pub struct IpNetwork(pub IpAddr, pub uint);
 
 impl IpNetwork {

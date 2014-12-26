@@ -3,7 +3,7 @@
 
 #[phase(plugin, link)]
 extern crate log;
-extern crate serialize;
+extern crate "rustc-serialize" as rustc_serialize;
 
 pub use addr::IpAddr;
 pub use net::IpNetwork;

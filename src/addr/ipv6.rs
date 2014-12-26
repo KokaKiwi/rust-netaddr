@@ -7,7 +7,7 @@ use super::IpAddrVersion::{mod, Ipv6};
 
 pub const MAX_PREFIXLEN: uint = 128;
 
-#[deriving(Copy, Clone, PartialEq, Eq, Hash, Encodable, Decodable)]
+#[deriving(Copy, Clone, PartialEq, Eq, Hash, RustcEncodable, RustcDecodable)]
 pub struct IpAddr(pub u16, pub u16, pub u16, pub u16, pub u16, pub u16, pub u16, pub u16);
 
 impl IpAddr {
