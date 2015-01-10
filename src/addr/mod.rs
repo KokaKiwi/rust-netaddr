@@ -1,6 +1,7 @@
 //! Provide operations over IP addresses.
 use std::fmt;
 use std::io::IpAddr as StdIpAddr;
+use std::ops::*;
 use std::str::FromStr;
 pub use self::IpAddr::*;
 pub use self::IpAddrVersion::*;
@@ -9,7 +10,7 @@ pub mod ipv4;
 pub mod ipv6;
 
 /// Describe an IP address
-#[deriving(Copy, Clone, PartialEq, Eq, PartialOrd,
+#[derive(Copy, Clone, Show, PartialEq, Eq, PartialOrd,
             Ord, Hash, RustcEncodable, RustcDecodable)]
 pub enum IpAddr {
     Ipv4Addr(ipv4::IpAddr),
@@ -17,7 +18,7 @@ pub enum IpAddr {
 }
 
 /// Describe the version of an IP address.
-#[deriving(Show, Copy, PartialEq, Eq, Hash,
+#[derive(Show, Copy, PartialEq, Eq, Hash,
             RustcEncodable, RustcDecodable)]
 pub enum IpAddrVersion {
     Ipv4,
@@ -68,7 +69,9 @@ impl IpAddr {
     }
 }
 
-impl Add<uint, IpAddr> for IpAddr {
+impl Add<uint> for IpAddr {
+    type Output = Self;
+
     fn add(self, rhs: uint) -> IpAddr {
         match self {
             Ipv4Addr(ip) => Ipv4Addr(ip + rhs as u32),
@@ -77,7 +80,9 @@ impl Add<uint, IpAddr> for IpAddr {
     }
 }
 
-impl Sub<uint, IpAddr> for IpAddr {
+impl Sub<uint> for IpAddr {
+    type Output = Self;
+
     fn sub(self, rhs: uint) -> IpAddr {
         match self {
             Ipv4Addr(ip) => Ipv4Addr(ip - rhs as u32),
@@ -86,7 +91,9 @@ impl Sub<uint, IpAddr> for IpAddr {
     }
 }
 
-impl BitXor<IpAddr, Option<IpAddr>> for IpAddr {
+impl BitXor<IpAddr> for IpAddr {
+    type Output = Option<Self>;
+
     fn bitxor(self, rhs: IpAddr) -> Option<IpAddr> {
         match (self, rhs) {
             (Ipv4Addr(left), Ipv4Addr(right)) =>
@@ -98,7 +105,9 @@ impl BitXor<IpAddr, Option<IpAddr>> for IpAddr {
     }
 }
 
-impl BitOr<IpAddr, Option<IpAddr>> for IpAddr {
+impl BitOr<IpAddr> for IpAddr {
+    type Output = Option<Self>;
+
     fn bitor(self, rhs: IpAddr) -> Option<IpAddr> {
         match (self, rhs) {
             (Ipv4Addr(left), Ipv4Addr(right)) =>
@@ -110,7 +119,9 @@ impl BitOr<IpAddr, Option<IpAddr>> for IpAddr {
     }
 }
 
-impl BitAnd<IpAddr, Option<IpAddr>> for IpAddr {
+impl BitAnd<IpAddr> for IpAddr {
+    type Output = Option<Self>;
+
     fn bitand(self, rhs: IpAddr) -> Option<IpAddr> {
         match (self, rhs) {
             (Ipv4Addr(left), Ipv4Addr(right)) =>
@@ -122,7 +133,9 @@ impl BitAnd<IpAddr, Option<IpAddr>> for IpAddr {
     }
 }
 
-impl Not<IpAddr> for IpAddr {
+impl Not for IpAddr {
+    type Output = Self;
+
     fn not(self) -> IpAddr {
         match self {
             Ipv4Addr(ref ip) => Ipv4Addr(!*ip),
@@ -154,7 +167,7 @@ impl IpAddr {
     }
 }
 
-impl fmt::Show for IpAddr {
+impl fmt::String for IpAddr {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         mirror!(*self, ip => ip.fmt(f))
     }

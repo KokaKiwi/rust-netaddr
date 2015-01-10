@@ -1,13 +1,15 @@
 //! Provide operations over IPv6 addresses.
+use std::cmp::Ordering;
 use std::fmt;
-use std::str::FromStr;
 use std::io::IpAddr as StdIpAddr;
+use std::ops::*;
 use std::simd::u64x2;
-use super::IpAddrVersion::{mod, Ipv6};
+use std::str::FromStr;
+use super::IpAddrVersion::{self, Ipv6};
 
 pub const MAX_PREFIXLEN: uint = 128;
 
-#[deriving(Copy, Clone, PartialEq, Eq, Hash, RustcEncodable, RustcDecodable)]
+#[derive(Copy, Clone, Show, PartialEq, Eq, Hash, RustcEncodable, RustcDecodable)]
 pub struct IpAddr(pub u16, pub u16, pub u16, pub u16, pub u16, pub u16, pub u16, pub u16);
 
 impl IpAddr {
@@ -47,7 +49,7 @@ impl IpAddr {
 
     /// The binary representation of this address - a bytes vector of the appropriate length (most significant octet first).
     /// This is 4 bytes for IPv4 and 16 bytes for IPv6.
-    pub fn packed(&self) -> [u8, ..16] {
+    pub fn packed(&self) -> [u8; 16] {
         let &IpAddr(a, b, c, d, e, f, g, h) = self;
         [
             ((a >> 8) & 0xff) as u8,
@@ -73,7 +75,7 @@ impl IpAddr {
     ///
     /// As Rust doesn't support u128-bits integer natively, this
     /// method take an array of two u64-bits integers
-    pub fn from_u128(n: [u64, ..2]) -> IpAddr {
+    pub fn from_u128(n: [u64; 2]) -> IpAddr {
         let a = (n[0] >> 48) & 0xffff;
         let b = (n[0] >> 32) & 0xffff;
         let c = (n[0] >> 16) & 0xffff;
@@ -91,7 +93,7 @@ impl IpAddr {
     ///
     /// As Rust doesn't support u128-bits integer natively, this
     /// method return an array of two u64-bits integers
-    pub fn to_u128(&self) -> [u64, ..2] {
+    pub fn to_u128(&self) -> [u64; 2] {
         let &IpAddr(a, b, c, d, e, f, g, h) = self;
         let (a, b, c, d) = (a as u64, b as u64, c as u64, d as u64);
         let (e, f, g, h) = (e as u64, f as u64, g as u64, h as u64);
@@ -111,7 +113,9 @@ impl IpAddr {
     }
 }
 
-impl Add<u64, IpAddr> for IpAddr {
+impl Add<u64> for IpAddr {
+    type Output = Self;
+
     fn add(self, rhs: u64) -> IpAddr {
         let u64x2(mut hi, mut lo) = self.to_simd();
 
@@ -124,7 +128,9 @@ impl Add<u64, IpAddr> for IpAddr {
     }
 }
 
-impl Sub<u64, IpAddr> for IpAddr {
+impl Sub<u64> for IpAddr {
+    type Output = Self;
+
     fn sub(self, rhs: u64) -> IpAddr {
         let u64x2(mut hi, mut lo) = self.to_simd();
 
@@ -137,28 +143,36 @@ impl Sub<u64, IpAddr> for IpAddr {
     }
 }
 
-impl BitXor<IpAddr, IpAddr> for IpAddr {
+impl BitXor<IpAddr> for IpAddr {
+    type Output = Self;
+
     /// > Use SIMD to do operations on 128-bits integer.
     fn bitxor(self, rhs: IpAddr) -> IpAddr {
         IpAddr::from_simd(self.to_simd() ^ rhs.to_simd())
     }
 }
 
-impl BitOr<IpAddr, IpAddr> for IpAddr {
+impl BitOr<IpAddr> for IpAddr {
+    type Output = Self;
+
     /// > Use SIMD to do operations on 128-bits integer.
     fn bitor(self, rhs: IpAddr) -> IpAddr {
         IpAddr::from_simd(self.to_simd() | rhs.to_simd())
     }
 }
 
-impl BitAnd<IpAddr, IpAddr> for IpAddr {
+impl BitAnd<IpAddr> for IpAddr {
+    type Output = Self;
+
     /// > Use SIMD to do operations on 128-bits integer.
     fn bitand(self, rhs: IpAddr) -> IpAddr {
         IpAddr::from_simd(self.to_simd() & rhs.to_simd())
     }
 }
 
-impl Not<IpAddr> for IpAddr {
+impl Not for IpAddr {
+    type Output = Self;
+
     fn not(self) -> IpAddr {
         let u64x2(a, b) = self.to_simd();
         IpAddr::from_simd(u64x2(!a, !b))
@@ -201,7 +215,7 @@ impl IpAddr {
     }
 }
 
-impl fmt::Show for IpAddr {
+impl fmt::String for IpAddr {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         self.to_std().fmt(f)
     }

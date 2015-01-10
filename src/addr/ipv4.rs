@@ -1,12 +1,14 @@
 //! Provide operations over IPv4 addresses.
+use std::cmp::Ordering;
 use std::fmt;
-use std::str::FromStr;
 use std::io::IpAddr as StdIpAddr;
-use super::IpAddrVersion::{mod, Ipv4};
+use std::ops::*;
+use std::str::FromStr;
+use super::IpAddrVersion::{self, Ipv4};
 
 pub const MAX_PREFIXLEN: uint = 32;
 
-#[deriving(Copy, Clone, PartialEq, Eq, Hash, RustcEncodable, RustcDecodable)]
+#[derive(Copy, Clone, Show, PartialEq, Eq, Hash, RustcEncodable, RustcDecodable)]
 pub struct IpAddr(pub u8, pub u8, pub u8, pub u8);
 
 impl IpAddr {
@@ -34,7 +36,7 @@ impl IpAddr {
 
     /// The binary representation of this address - a bytes vector of the appropriate length (most significant octet first).
     /// This is 4 bytes for IPv4 and 16 bytes for IPv6.
-    pub fn packed(&self) -> [u8, ..4] {
+    pub fn packed(&self) -> [u8; 4] {
         let &IpAddr(a, b, c, d) = self;
         [a, b, c, d]
     }
@@ -57,37 +59,49 @@ impl IpAddr {
     }
 }
 
-impl Add<u32, IpAddr> for IpAddr {
+impl Add<u32> for IpAddr {
+    type Output = Self;
+
     fn add(self, rhs: u32) -> IpAddr {
         IpAddr::from_u32(self.to_u32() + rhs)
     }
 }
 
-impl Sub<u32, IpAddr> for IpAddr {
+impl Sub<u32> for IpAddr {
+    type Output = Self;
+
     fn sub(self, rhs: u32) -> IpAddr {
         IpAddr::from_u32(self.to_u32() - rhs)
     }
 }
 
-impl BitXor<IpAddr, IpAddr> for IpAddr {
+impl BitXor<IpAddr> for IpAddr {
+    type Output = Self;
+
     fn bitxor(self, rhs: IpAddr) -> IpAddr {
         IpAddr::from_u32(self.to_u32() ^ rhs.to_u32())
     }
 }
 
-impl BitOr<IpAddr, IpAddr> for IpAddr {
+impl BitOr<IpAddr> for IpAddr {
+    type Output = Self;
+
     fn bitor(self, rhs: IpAddr) -> IpAddr {
         IpAddr::from_u32(self.to_u32() | rhs.to_u32())
     }
 }
 
-impl BitAnd<IpAddr, IpAddr> for IpAddr {
+impl BitAnd<IpAddr> for IpAddr {
+    type Output = Self;
+
     fn bitand(self, rhs: IpAddr) -> IpAddr {
         IpAddr::from_u32(self.to_u32() & rhs.to_u32())
     }
 }
 
-impl Not<IpAddr> for IpAddr {
+impl Not for IpAddr {
+    type Output = Self;
+
     fn not(self) -> IpAddr {
         IpAddr::from_u32(!self.to_u32())
     }
@@ -129,7 +143,7 @@ impl IpAddr {
     }
 }
 
-impl fmt::Show for IpAddr {
+impl fmt::String for IpAddr {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         self.to_std().fmt(f)
     }

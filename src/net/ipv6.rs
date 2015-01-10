@@ -1,9 +1,10 @@
 //! Provide operations over IPv6 networks.
+use std::cmp::Ordering;
 use std::fmt;
 use addr::ipv6::{IpAddr, MAX_PREFIXLEN};
 use addr::{IpAddrVersion, Ipv6};
 
-#[deriving(Copy, Clone, PartialEq, Eq, Hash, RustcEncodable, RustcDecodable)]
+#[derive(Copy, Clone, Show, PartialEq, Eq, Hash, RustcEncodable, RustcDecodable)]
 pub struct IpNetwork(pub IpAddr, pub uint);
 
 impl IpNetwork {
@@ -94,19 +95,21 @@ impl Ord for IpNetwork {
     }
 }
 
-impl fmt::Show for IpNetwork {
+impl fmt::String for IpNetwork {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}/{}", self.address(), self.prefix())
     }
 }
 
-#[deriving(Copy, Clone)]
+#[derive(Copy, Clone)]
 pub struct Hosts {
     state: IpAddr,
     stop: IpAddr,
 }
 
-impl Iterator<IpAddr> for Hosts {
+impl Iterator for Hosts {
+    type Item = IpAddr;
+
     fn next(&mut self) -> Option<IpAddr> {
         if self.state <= self.stop {
             let result = self.state;
@@ -118,7 +121,7 @@ impl Iterator<IpAddr> for Hosts {
     }
 }
 
-impl DoubleEndedIterator<IpAddr> for Hosts {
+impl DoubleEndedIterator for Hosts {
     fn next_back(&mut self) -> Option<IpAddr> {
         if self.stop >= self.state {
             self.stop = self.stop - 1;

@@ -7,7 +7,7 @@ pub mod ipv4;
 pub mod ipv6;
 
 /// Describe an IP network.
-#[deriving(Copy, Clone, PartialEq, Eq, PartialOrd,
+#[derive(Copy, Clone, Show, PartialEq, Eq, PartialOrd,
             Ord, Hash, RustcEncodable, RustcDecodable)]
 pub enum IpNetwork {
     Ipv4Network(ipv4::IpNetwork),
@@ -127,19 +127,21 @@ impl IpNetwork {
     }
 }
 
-impl fmt::Show for IpNetwork {
+impl fmt::String for IpNetwork {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         mirror!(*self, net => net.fmt(f))
     }
 }
 
-#[deriving(Copy, Clone)]
+#[derive(Copy, Clone)]
 pub struct Hosts {
     state: IpAddr,
     stop: IpAddr,
 }
 
-impl Iterator<IpAddr> for Hosts {
+impl Iterator for Hosts {
+    type Item = IpAddr;
+
     fn next(&mut self) -> Option<IpAddr> {
         if self.state <= self.stop {
             let result = self.state;
@@ -151,7 +153,7 @@ impl Iterator<IpAddr> for Hosts {
     }
 }
 
-impl DoubleEndedIterator<IpAddr> for Hosts {
+impl DoubleEndedIterator for Hosts {
     fn next_back(&mut self) -> Option<IpAddr> {
         if self.stop >= self.state {
             self.stop = self.stop - 1;

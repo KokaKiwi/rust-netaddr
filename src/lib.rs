@@ -1,7 +1,8 @@
-#![feature(phase, globs, macro_rules)]
+#![feature(int_uint)]
 #![experimental]
+#![allow(unstable)]
 
-#[phase(plugin, link)]
+#[macro_use]
 extern crate log;
 extern crate "rustc-serialize" as rustc_serialize;
 
